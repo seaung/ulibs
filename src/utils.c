@@ -11,6 +11,11 @@
 #include "utils.h"
 
 
+/* 函数功能: 生成指定长度的随机字符串
+ * 入参: length, 生成字符串的长度
+ * 出参: res_string,生成的目标字符串
+ * 返回值: 成功返回生成的字符串,失败返回NULL
+ * */
 char * random_string(int length, char *res_string) {
 	int flag, index;
 	char *tmp_string;
@@ -46,6 +51,11 @@ char * random_string(int length, char *res_string) {
 	return res_string;
 }
 
+/* 函数功能: 获取mac地址
+ * 入参: peth,网卡名称, buffer_len,缓冲区长度
+ * 出参: mac_buffer, mac地址
+ * 返回值: 成功返回0,失败返回-1
+ * */
 int get_mac_address(char *peth, char *mac_buffer, int buffer_len) {
 	struct ifreq ifreq;
 	int sock = 0;
@@ -70,4 +80,15 @@ int get_mac_address(char *peth, char *mac_buffer, int buffer_len) {
 	memcpy(mac_buffer, mac, buffer_len);
 	close(sock);
 	return 0;
+}
+
+/* 函数功能: 获取当前日期时间
+ * 出参: time_string,
+ * */
+void get_time_to_string(char *time_string) {
+	time_t td;
+	struct tm *p;
+	time(&td);
+	p = localtime(&td);
+	snprintf(time_string, sizeof(time_string), "%d-%d-%d %d:%d:%d\n", 1900+p->tm_year, 1+p->tm_mon, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
 }

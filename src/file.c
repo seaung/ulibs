@@ -13,6 +13,7 @@
 /* 函数功能: 返回文件大小
  * 入参: filename: 文件的名字, size: 文件大小
  * 出参: size 文件大小
+ * 返回值: 成功返回文件大小,失败返回0
  * */
 int * get_file_size(const char *filename, int *size) {
 	int status;
@@ -30,6 +31,7 @@ int * get_file_size(const char *filename, int *size) {
 /* 函数功能: 一次性获取文件的内容
  * 入参: filename: 文件名字, content_buffer: 文件内容缓冲区
  * 出参: content_buffer
+ * 返回值: 成功返回文件内容,失败返回空字符串
  * */
 char * get_file_content(const char *filename, char *content_buffer) {
 	FILE *file;
