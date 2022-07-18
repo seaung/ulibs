@@ -92,3 +92,12 @@ void get_time_to_string(char *time_string) {
 	p = localtime(&td);
 	snprintf(time_string, sizeof(time_string), "%d-%d-%d %d:%d:%d\n", 1900+p->tm_year, 1+p->tm_mon, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
 }
+
+void timestamp2string(time_t timestamp, char *time_buffer) {
+	struct tm *time;
+
+	timestamp += 8 * 60 * 60;
+	time = localtime(&timestamp);
+
+	strftime(time_buffer, sizeof(time_buffer), "%F %T", time);
+}
