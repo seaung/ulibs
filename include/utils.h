@@ -10,4 +10,6 @@ void get_time_to_string(char *time_string);
 
 void timestamp2string(time_t timestamp, char *time_buffer);
 
+long get_file_size(const char * filename);
+
 #endif

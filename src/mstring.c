@@ -1,4 +1,7 @@
+#include <ctype.h>
 #include <string.h>
+#include <stdio.h>
+#include <unistd.h>
 
 #include "mstring.h"
 
@@ -22,4 +25,26 @@ int cut_string(char * dest, const char * src, int index, int length) {
 	dest[len + 1] = '\0';
 
 	return 0;
+}
+
+char *str_trim_tol(char *s) {
+	register char *p, *q;
+	p = q = s;
+	while(isspace(*q))
+		++q;
+	while (*q)
+		*p++ = *q++;
+	*p = '\0';
+	return s;
+}
+
+char *str_trim_tor(char *s) {
+	register char *p;
+
+	p = s + strlen(s);
+	if (p > s) {
+		do { --p; } while(isspace(*p));
+		p[1] = '\0';
+	}
+	return s;
 }

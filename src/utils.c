@@ -4,6 +4,9 @@
 #include <time.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <ifaddrs.h>
 #include <netinet/in.h>
 #include <net/if.h>
@@ -100,4 +103,12 @@ void timestamp2string(time_t timestamp, char *time_buffer) {
 	time = localtime(&timestamp);
 
 	strftime(time_buffer, sizeof(time_buffer), "%F %T", time);
+}
+
+long get_file_size(const char * filename) {
+	struct stat st;
+	if (stat(filename, &st) < 0) {
+		return -1;
+	}
+	return st.st_size;
 }
