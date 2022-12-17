@@ -20,7 +20,7 @@ struct logs {
 
 typedef struct logs logs_t;
 
-logs_t init_log(const char * filename, int max_size, char max_count, char nwsyslog);
+logs_t * init_log(const char * filename, int max_size, char max_count, char nwsyslog);
 void print_log(logs_t *log, const char *fmt, ...);
 void release_log(logs_t *log);
 void log_2_hexprint(FILE * logfd, const char * buffer, int len, char bigorder, char convert);
